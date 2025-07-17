@@ -1,0 +1,12 @@
+<div class="card" (mouseover)="hover = true" (mouseleave)="hover = false">
+    <img [src]="image" class="card-image" [ngStyle]="{ filter: hover ? 'blur(1px)' : 'none'}" />
+    <div class="card-content">
+        <h3 class="card-title">{{title}}</h3>
+        <button class="like-btn" [class.like-btn-unlike]="!liked" (click)="toggleLike()">
+            <span>&#x2764;</span>
+        </button>
+    </div>
+    <button class="details-btn" *ngIf="hover" (click)="ondetail.emit(id)" >
+        Detalhar
+    </button>
+</div>

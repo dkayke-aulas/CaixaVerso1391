@@ -1,0 +1,12 @@
+<h1>Osasco Games</h1>
+
+<div *ngFor="let game of games">
+    <app-game-card
+    [title]='game.nome' 
+    [id]="game.id" 
+    [image]="game.image"
+    (ondetail)="onDetail($event)">
+</app-game-card>
+</div>
+
+

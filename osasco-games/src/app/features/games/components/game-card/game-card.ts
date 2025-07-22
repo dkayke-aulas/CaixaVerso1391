@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Game } from './../../../../typings/games';
 
 @Component({
   selector: 'app-game-card',
@@ -7,17 +8,15 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrl: './game-card.css',
 })
 export class GameCard {
-  @Input() id: string | undefined;
-  @Input() title: string | undefined;
-  @Input() image: string | undefined;
+  @Input({ required: true }) game: Partial<Game> = {};
   @Output() ondetail = new EventEmitter<string>();
 
   liked: boolean = false;
   hover: boolean = false;
 
   constructor() {
-    if (this.title === undefined) {
-      console.error('NÃO TEM O ATRIBUTO TITLE');
+    if (this.game.id === undefined) {
+      console.error('NÃO TEM O ATRIBUTO GAME');
     }
   }
 

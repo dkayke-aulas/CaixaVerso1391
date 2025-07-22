@@ -1,0 +1,8 @@
+<!-- <app-game-card *ngFor="let game of games; trackBy: trackBy" [game]="game">
+</app-game-card> -->
+
+<div class="content-list">
+  @for(game of games; track game.id) {
+  <app-game-card [game]="game" (ondetail)="detailGame($event)"></app-game-card>
+  }
+</div>

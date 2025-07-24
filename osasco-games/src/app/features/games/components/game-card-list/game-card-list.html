@@ -3,6 +3,11 @@
 
 <div class="content-list">
   @for(game of games; track game.id) {
+  <!-- <p>{{ game.genderId | genderById }}</p> -->
   <app-game-card [game]="game" (ondetail)="detailGame($event)"></app-game-card>
   }
 </div>
+
+<ng-template [ngIf]="!games.length">
+  <p>Não há itens encontrados!</p>
+</ng-template>

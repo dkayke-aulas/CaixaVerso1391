@@ -1,1 +1,4 @@
-<app-game-card-list [games]="games" (ondetailgame)="onDetailGame($event)"></app-game-card-list>
+<input [(ngModel)]="filterText" placeholder="Filtrar por nome..." />
+{{filteredGames().length}}
+
+<app-game-card-list [games]="filteredGames()" (ondetailgame)="onDetailGame($event)"></app-game-card-list>

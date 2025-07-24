@@ -1,1 +1,21 @@
-<p>game-detail-page works!</p>
+<a [routerLink]="'/' + paths.catalog">&larr;</a>
+
+<!-- <p>game-detail-page works!</p> -->
+
+<div class="page-container">
+  <div class="game-wrapper">
+    <div class="game-image">
+      <img src="assets/{{ game.id }}.jpg" alt="{{ game.name }}" />
+    </div>
+
+    <div class="game-info">
+      <h1>{{ game.name }}</h1>
+      <p class="description">{{ game.description }}</p>
+      <p class="meta">
+        <!-- ID do Jogo: {{ game.id }} | Gênero: {{ convertGender(game.genderId) }} -->
+        ID do Jogo: {{ game.id }} | Gênero:
+        {{ game.genderId | genderById : genders }}
+      </p>
+    </div>
+  </div>
+</div>

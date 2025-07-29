@@ -19,3 +19,32 @@
     </div>
   </div>
 </div>
+
+<hr />
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="nome">Nome</label>
+    <input id="nome" type="text" formControlName="nome" />
+    <div *ngIf="nome?.touched && nome?.invalid">
+      <small *ngIf="nome?.errors?.['required']" style="color: red">
+        Nome é obrigatório
+      </small>
+      <small *ngIf="nome?.errors?.['minlength']" style="color: red">
+        Nome deve ter ao menos 2 letras
+      </small>
+    </div>
+  </div>
+
+  <div>
+    <label for="telefone">Telefone</label>
+    <input
+      id="telefone"
+      type="tel"
+      formControlName="telefone"
+      required="true"
+    />
+  </div>
+
+  <button>Enviar</button>
+</form>

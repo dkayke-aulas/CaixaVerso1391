@@ -5,6 +5,7 @@ import { PATHS } from '../../../../typings/paths';
 import { Game } from '../../../../typings/games';
 import { CatalogService } from '../../services/catalog-service';
 import { Gender } from '../../../../typings/genders';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 type State = { gameId: string };
 
@@ -15,15 +16,23 @@ type State = { gameId: string };
   styleUrl: './game-detail-page.css',
 })
 export class GameDetailPage implements OnInit {
+  form: FormGroup
+
   paths = PATHS;
   game: Game = {} as Game;
   genders: Gender[] = [];
 
   constructor(
+    private fb: FormBuilder,
     private catalogService: CatalogService,
     // private router: Router,
     private location: Location
   ) {
+    this.form = this.fb.group({
+      nome: ['', [Validators.required, Validators.minLength(2)]],
+      telefone: ['(xx)xxx-xxxx']
+    })
+
     // console.log('CONSTRUTOR');
     // const state = this.router.getCurrentNavigation()?.extras.state as State;
     // console.log(state);
@@ -43,6 +52,25 @@ export class GameDetailPage implements OnInit {
     this.catalogService.getGenders().subscribe((genders) => {
       this.genders = genders;
     });
+  }
+  
+  onSubmit() {
+
+    if(this.form.valid) {
+      const { nome: name, telefone: phone } = this.form.value 
+      console.log({ name, phone })
+    }
+    else {
+      this.form.markAllAsTouched()
+    }
+  }
+
+  get nome() {
+    return this.form.get('nome')
+  }
+
+  get telefone() {
+    return this.form.get('telefone')
   }
 
   convertGender(genderId: string) {
